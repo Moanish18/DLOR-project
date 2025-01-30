@@ -1,3 +1,19 @@
+import os
+
+# URL of the file to download
+url = "https://dlor-project.s3.us-east-1.amazonaws.com/VGG19.h5"
+
+# File name to save as
+file_name = "VGG19.h5"
+
+# Download the file using wget
+os.system(f"wget -O {file_name} {url}")
+
+# Save the file name to a variable
+model_file = file_name
+
+print(f"Model file saved as: {model_file}")
+
 import streamlit as st
 import tensorflow as tf
 import numpy as np
@@ -7,7 +23,7 @@ from PIL import Image
 # Load the trained VGG19 model
 @st.cache_resource
 def load_vgg19_model():
-    return tf.keras.models.load_model("VGG19.h5")  # Ensure your model is named 'VGG19.h5'
+    return tf.keras.models.load_model(model_file)  # Ensure your model is named 'VGG19.h5'
 
 model = load_vgg19_model()
 
